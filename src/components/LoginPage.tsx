@@ -8,10 +8,20 @@ interface IProps{
     }
 }
 
-export class LoginPage extends Component<IProps> {
+interface IState{
+  isPhonenumber:boolean,
+}
+
+export class LoginPage extends Component<IProps,IState> {
+
+  state:IState = {isPhonenumber:false}
 
     handleLoginPage=()=>{ 
         this.props.navigation.navigate('BottomTab')
+    }
+
+    handleInputs=()=>{
+      this.setState(p=>({isPhonenumber:!p.isPhonenumber}))
     }
   render() {
     return (
@@ -22,10 +32,10 @@ export class LoginPage extends Component<IProps> {
         </View>
         <View style={styles.detailsCont}>
             <Text style={styles.line1}>Log in for the best experience</Text>
-            <Text style={styles.line2}>Enter your phone number to continue</Text>
-            <TextInput  style={styles.inputCont} inputMode='numeric' keyboardType='numeric' autoComplete='tel-country-code'/>
-            <Text style={styles.emailText}>Use Email-ID</Text>
-            <Text style={styles.lastLine}> By continuing you agree to flipcart's <Text style={styles.termsPolicy}>Terms of Use</Text> and <Text style={styles.termsPolicy}>Privacy Policy</Text></Text>
+            <Text style={styles.line2}>Enter your<Text>{this.state.isPhonenumber ? " Email ID " : " Phone Number "}</Text> to continue</Text>
+            <TextInput placeholder={this.state.isPhonenumber ? " Email ID " : " Phone Number "} style={styles.inputCont} inputMode='numeric' keyboardType='numeric' autoComplete='tel-country-code'/>
+            <Text style={styles.emailText} onPress={this.handleInputs}>{this.state.isPhonenumber ? " Use Phone Number" : " Use Email ID"}</Text>
+            <Text style={styles.lastLine}> By continuing you agree to Flipcart's <Text style={styles.termsPolicy}>Terms of Use</Text> and <Text style={styles.termsPolicy}>Privacy Policy</Text></Text>
             <View style={styles.buttonCont}>
               <TouchableOpacity onPress={this.handleLoginPage} style={styles.continueButton}>
                   <Text style={styles.continueText}>Continue</Text>
@@ -82,7 +92,7 @@ const styles = StyleSheet.create({
 
     line1:{
       fontSize:20,
-      fontweight:'400',
+      fontWeight:'400',
       color:'#000',
       fontStyle:'normal',
       fontFamily:'Roboto',
@@ -124,8 +134,11 @@ const styles = StyleSheet.create({
     },
 
     buttonCont:{
-      justifyContent:'flex-end',
+      flex:1,
+      flexDirection:'row',
+      justifyContent:'center',
       alignItems:'flex-end',
+      flexGrow:1,
     },
 
     continueButton:{
@@ -134,6 +147,8 @@ const styles = StyleSheet.create({
       borderRadius:2,
       justifyContent:'center',
       alignItems:'center',
+      flexGrow:1,
+      
     },
 
     continueText:{
