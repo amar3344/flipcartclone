@@ -33,7 +33,7 @@ export class LoginPage extends Component<IProps,IState> {
         <View style={styles.detailsCont}>
             <Text style={styles.line1}>Log in for the best experience</Text>
             <Text style={styles.line2}>Enter your<Text>{this.state.isPhonenumber ? " Email ID " : " Phone Number "}</Text> to continue</Text>
-            <TextInput placeholder={this.state.isPhonenumber ? " Email ID " : " Phone Number "} style={styles.inputCont} inputMode='numeric' keyboardType='numeric' autoComplete='tel-country-code'/>
+            <TextInput placeholder={this.state.isPhonenumber ? " Email ID " : " Phone Number "} style={styles.inputCont} inputMode={this.state.isPhonenumber ? 'email' : 'tel'} keyboardType='numeric' autoComplete='tel-country-code'/>
             <Text style={styles.emailText} onPress={this.handleInputs}>{this.state.isPhonenumber ? " Use Phone Number" : " Use Email ID"}</Text>
             <Text style={styles.lastLine}> By continuing you agree to Flipcart's <Text style={styles.termsPolicy}>Terms of Use</Text> and <Text style={styles.termsPolicy}>Privacy Policy</Text></Text>
             <View style={styles.buttonCont}>
