@@ -15,7 +15,7 @@ export class App extends Component {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name='LoginPage' options={{headerShown:false}} component={LoginPage}/>
-          <Stack.Screen name="BottomTab" component={BottomTab}/>
+          <Stack.Screen name="BottomTab" component={BottomTab} options={{headerShown:false}}/>
         </Stack.Navigator>
       </NavigationContainer>
     )
